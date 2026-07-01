@@ -1,6 +1,73 @@
 import streamlit as st
 
-st.title("🎈 My new app")
-st.write(
-    "Let's start building! For help and inspiration, head over to [docs.streamlit.io](https://docs.streamlit.io/)."
+# إعدادات عنوان التطبيق في المتصفح
+st.set_page_config(page_title="درس القارات والمحيطات", page_icon="🌍")
+
+# عنوان الدرس
+st.title("🌍 درس القارات وتعريفها")
+st.subheader("الصف الثاني الابتدائي")
+st.write("---")
+
+# السؤال الأول
+st.markdown("### **السؤال 1**")
+q1 = st.radio(
+    "كم عدد قارات العالم ؟",
+    ["5 قارات", "6 قارات", "7 قارات"],
+    index=None,
+    key="q1"
 )
+
+st.write("") 
+
+# السؤال الثاني
+st.markdown("### **السؤال 2**")
+q2 = st.radio(
+    "كم عدد محيطات العالم ؟",
+    ["4 محيطات", "5 محيطات", "6 محيطات"],
+    index=None,
+    key="q2"
+)
+
+st.write("")
+
+# السؤال الثالث
+st.markdown("### **السؤال 3**")
+q3 = st.radio(
+    "في أي قارة يقع الأردن ؟",
+    ["قارة أفريقيا", "قارة آسيا", "قارة أوروبا"],
+    index=None,
+    key="q3"
+)
+
+st.write("")
+
+# السؤال الرابع
+st.markdown("### **السؤال 4**")
+q4 = st.radio(
+    "ما هو تعريف القارة ؟",
+    [
+        "أرض صغيرة تحيط بها المياه من كل جانب", 
+        "مساحة كبيرة جداً من اليابسة تضم عدداً من الدول", 
+        "تجمع كبير من المياه المالحة"
+    ],
+    index=None,
+    key="q4"
+)
+
+st.write("---")
+
+# زر تصحيح الإجابات
+if st.button("اضغط هنا لتصحيح الإجابات ورؤية النتيجة 🎯"):
+    if q1 is None or q2 is None or q3 is None or q4 is None:
+        st.warning("الرجاء الإجابة على جميع الأسئلة أولاً! ⚠️")
+    else:
+        score = 0
+        if q1 == "7 قارات": score += 1
+        if q2 == "5 محيطات": score += 1
+        if q3 == "قارة آسيا": score += 1
+        if q4 == "مساحة كبيرة جداً من اليابسة تضم عدداً من الدول": score += 1
+            
+        st.balloons() 
+        st.success(f"🎉 أحسنت يا بطل! درجتك هي: {score} من 4")
+        st.write("")
+        st.info("💡 مع تحيات معلمة المادة: **كوثر البديرات**")
